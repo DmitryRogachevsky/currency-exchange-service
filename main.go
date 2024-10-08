@@ -23,18 +23,8 @@ func main() {
 	defer db.Close()
 
 	fmt.Println("Connected to the database.")
-	for {
-		now := time.Now()
-		nextRun := time.Date(now.Year(), now.Month(), now.Day(), 0, 30, 0, 0, now.Location())
-		if now.After(nextRun) {
-			nextRun = nextRun.Add(24 * time.Hour)
-		}
-		timeToWait := nextRun.Sub(now)
-		fmt.Printf("Waiting for %s until next run...\n", timeToWait)
-		time.Sleep(timeToWait)
 
-		fetchCurrencyRates()
-	}
+	fetchCurrencyRates()
 }
 
 func fetchCurrencyRates() {
